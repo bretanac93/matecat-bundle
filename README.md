@@ -1,7 +1,9 @@
 #Readme
 Matecat bridge for symfony.
+
 ##Installation
 `composer require bretanac93/matecat-bundle`
+
 ##Configuration
 
 ```yaml
