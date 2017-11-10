@@ -1,7 +1,15 @@
 {
-    "name": "cesar/bundles",
-    "license": "proprietary",
-    "type": "project",
+    "name": "bretanac93/matecat-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "description": "Symfony Matecat bridge",
+    "keywords": ["Matecat", "matecat api", "matecat rest api"],
+    "authors": [
+        {
+            "name": "Cesar Bretana Gonzalez",
+            "email": "bretanac@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Lengoo\\MateCatBundle\\": ""
