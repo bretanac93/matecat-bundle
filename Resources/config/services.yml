@@ -1,0 +1,4 @@
+services:
+    lengoo_mate_cat.projects:
+        class: Lengoo\MateCatBundle\Services\ProjectsService
+        arguments: ['%lengoo_mate_cat.host%', '%lengoo_mate_cat.port%', '%lengoo_mate_cat.private_tm_key%']
