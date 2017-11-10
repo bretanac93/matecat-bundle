@@ -4,7 +4,7 @@ Matecat bridge for symfony.
 `composer require bretanac93/matecat-bundle`
 ##Configuration
 
-```json
+```yaml
 lengoo_mate_cat:
     matecat:
         host:                 "<host>"
