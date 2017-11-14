@@ -36,9 +36,7 @@ class ProjectsService
      */
     public function getProjectSummary($id_project, $project_pass)
     {
-        $response = $this->client->get("/api/status?id_project=$id_project&project_pass=$project_pass");
-
-        $response_payload = json_decode($response->getBody()->getContents());
+        $response_payload = $this->getProject($id_project, $project_pass);
 
         return $response_payload->data->summary;
     }
@@ -50,18 +48,14 @@ class ProjectsService
      */
     public function getProjectErrors($id_project, $project_pass)
     {
-        $response = $this->client->get("/api/status?id_project=$id_project&project_pass=$project_pass");
-
-        $response_payload = json_decode($response->getBody()->getContents());
+        $response_payload = $this->getProject($id_project, $project_pass);
 
         return $response_payload->errors;
     }
 
     public function getProjectTranslationUrls($id_project, $project_pass)
     {
-        $response = $this->client->get("/api/status?id_project=$id_project&project_pass=$project_pass");
-
-        $response_payload = json_decode($response->getBody()->getContents());
+        $response_payload = $this->getProject($id_project, $project_pass);
 
         $res = get_object_vars(get_object_vars($response_payload->jobs)['job-url']);
 
@@ -75,8 +69,26 @@ class ProjectsService
 
     public function getProjectAnalysisUrl($id_project, $project_pass)
     {
-        $response = $this->client->get("/api/status?id_project=$id_project&project_pass=$project_pass");
-        $response_payload = json_decode($response->getBody()->getContents());
+        $response_payload = $this->getProject($id_project, $project_pass);
         return $response_payload->analyze;
+    }
+
+    public function getProjectAnalysisData($id_project, $project_pass)
+    {
+        $response_payload = $this->getProject($id_project, $project_pass);
+        $jobs = $response_payload->jobs;
+
+        $result = [];
+        foreach ($jobs as $item)
+        {
+            array_push($result, $item->totals);
+        }
+        return $result;
+    }
+
+    private function getProject($id_project, $project_pass)
+    {
+        $response = $this->client->get("/api/status?id_project=$id_project&project_pass=$project_pass");
+        return json_decode($response->getBody()->getContents());
     }
 }
